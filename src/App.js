@@ -2,7 +2,10 @@ import React, { useState, useEffect, useRef } from "react";
 import "./style.css";
 
 export default function App() {
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState(()=>{
+    const savedNotes=localStorage.getItem("notes");
+    return savedNotes ? JSON.parse(savedNotes):[];
+  });
   const [text, setText] = useState("");
   const [editId, setEditId] = useState(null);
   const inputRef = useRef(null);
